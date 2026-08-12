@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.3-hxi.3 — Direct Enemy Cast Overlay
+
+This corrective update stops relying on the native HorizonXI cast display entirely. SimpleLog now draws its own **no-box center-screen alert** with Ashita’s fonts API when an enemy begins a spell or ability.
+
+| Component | Change |
+|---|---|
+| On-screen alert | Added a direct no-box font overlay: `Mob Name > Spell or Ability`. |
+| Trigger source | Uses parsed enemy action-start categories for monster abilities, magic, and job abilities. |
+| Log behavior | Keeps the repaired SimpleLog chat log and existing packet suppression unchanged. |
+| Lifetime | Each alert remains visible for 3.5 seconds, then clears automatically. |
+
 ## v1.1.3-hxi.2 — Native Cast Alert Restoration
 
 This follow-up restores the separate **native center-screen enemy cast alert** while retaining the repaired SimpleLog combat log.

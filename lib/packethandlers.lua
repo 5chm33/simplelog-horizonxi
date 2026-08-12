@@ -94,9 +94,8 @@ packethandlers.HandleIncoming0x28 = function(e)
         return
     end
 
-    -- SimpleLog intentionally rewrites the action packet to suppress selected
-    -- native log lines.  Cast-start message IDs are preserved by the action
-    -- handler so the game can still render the native center-screen alert.
+    -- SimpleLog rewrites the action packet to suppress selected native log
+    -- lines.  The separate cast-alert module renders the visual alert directly.
     local parsed = gActionHandlers.parse_action_packet(act)
     if parsed then
         e.data_modified = gActionHandlers.ActToString(e.data, parsed)
