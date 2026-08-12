@@ -207,7 +207,7 @@ local CheckFilter = function(actor, target, category, msg)
     or nf(res_actmsg[msg],'color')=='M' and filtertab['misses']
     or nf(res_actmsg[msg],'color')=='H' and filtertab['healing']
     or (msg == 43 or msg == 326) and filtertab['readies']
-    or (msg == 3 or msg==327) and filtertab['casting']
+    or (msg == 3 or msg == 327 or msg == 716) and filtertab['casting']
     then
         return false
     end

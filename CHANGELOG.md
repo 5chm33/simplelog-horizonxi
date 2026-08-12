@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.3-hxi.2 — Native Cast Alert Restoration
+
+This follow-up restores the separate **native center-screen enemy cast alert** while retaining the repaired SimpleLog combat log.
+
+| Component | Change |
+|---|---|
+| Native cast display | Preserves action messages `3`, `327`, and `716` in the reconstructed `0x28` packet so HorizonXI can draw its center-screen casting alert. |
+| Combat log | Retains the corrected 6-bit target-count parser and existing SimpleLog formatting / suppression behavior. |
+| Casting filter | Applies the existing **Casting** filter consistently to message `716` as well. |
+
 ## v1.1.3-hxi.1 — HorizonXI ToAU Compatibility
 
 This maintenance update restores action-driven output that could disappear after the current HorizonXI/Ashita client update.

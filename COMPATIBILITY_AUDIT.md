@@ -14,9 +14,13 @@ The fork also has two fragile behaviors that can hide output instead of producin
 
 | Area | Existing behavior | Fix |
 |---|---|---|
-| Action packet callback | Rebuilds and writes `e.data_modified` even though SimpleLog is only observing the action packet. | Parse locally without modifying the packet seen by the game or other addons. |
+| Action packet callback | Rebuilds the action packet with the malformed target header, suppressing all native action output. | Rebuild only after correct parsing and preserve cast-start message IDs so the game’s native center-screen cast alert still renders. |
 | Unknown actor/target lookup | Returns an actor object without `filter` metadata. `CheckFilter` then silently rejects the message. | Restore the upstream fallback actor classification so visible output is retained while entity data is still loading. |
 | Action parsing | No header/target bounds validation. | Validate packet header data and stop safely on malformed or truncated action records. |
+
+## Native Cast Alert Restoration
+
+SimpleLog formats the action into its custom chat output, then rebuilds the action packet to suppress selected native messages. The game's large center-screen enemy-cast alert is produced from the native cast-start messages, so action messages `3`, `327`, and `716` must remain intact in the rebuilt packet. The compatibility build preserves these IDs while leaving the normal SimpleLog log formatting and filter behavior unchanged.
 
 ## Verification Basis
 

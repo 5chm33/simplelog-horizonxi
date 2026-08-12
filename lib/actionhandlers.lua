@@ -432,7 +432,10 @@ actionhandlers.parse_action_packet = function(act)
 						AshitaCore:GetChatManager():AddChatMessage(color, false, message)
 					end
 				end
-                if not non_block_messages:contains(m.message) then
+                -- Keep the native casting alert in the action packet.  HorizonXI
+                -- renders these message IDs as the prominent center-screen alert.
+                local preserve_native_cast_alert = (m.message == 3 or m.message == 327 or m.message == 716)
+                if not preserve_native_cast_alert and not non_block_messages:contains(m.message) then
                     m.message = 0
                 end
             end

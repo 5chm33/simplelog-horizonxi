@@ -85,8 +85,6 @@ packethandlers.DelayedSelfAssign = function ()
 end
 
 packethandlers.HandleIncoming0x28 = function(e)
-    -- Action packets are observed only.  Rebuilding and writing data_modified is
-    -- unnecessary and can corrupt the packet for other addons on newer clients.
     if not e or not e.data or not e.size or e.size < 8 then
         return
     end
@@ -96,7 +94,13 @@ packethandlers.HandleIncoming0x28 = function(e)
         return
     end
 
-    gActionHandlers.parse_action_packet(act)
+    -- SimpleLog intentionally rewrites the action packet to suppress selected
+    -- native log lines.  Cast-start message IDs are preserved by the action
+    -- handler so the game can still render the native center-screen alert.
+    local parsed = gActionHandlers.parse_action_packet(act)
+    if parsed then
+        e.data_modified = gActionHandlers.ActToString(e.data, parsed)
+    end
 end
 
 packethandlers.HandleIncomingPacket = function(e)
