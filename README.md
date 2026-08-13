@@ -4,15 +4,15 @@ SimpleLog is an **Ashita v4 combat and message log parser**. It replaces selecte
 
 > **Platform:** Ashita v4 / HorizonXI. SimpleLog is an addon: load it with `/addon load simplelog`.
 
-## Compatibility Update — v1.1.3-hxi.5
+## Compatibility Update — v1.1.3-hxi.6
 
-This release fixes the prior startup crash and keeps the repaired incoming `0x28` action-packet parser plus SimpleLog’s bundled styled GDI renderer. The actor and spell are read from a separate current-client action parser, so the alert no longer exposes an incorrect `{Unknown:<id>}` placeholder while an entity is loading.
+This stability release removes the experimental direct cast renderer introduced by prior compatibility builds because it could interfere with TChat when the chat window was maximized or minimized. The repaired incoming `0x28` action-packet parser and normal SimpleLog combat log remain enabled.
 
 | Area | Compatibility change |
 |---|---|
-| Mob casting alerts | Renders a centered blue-gradient, outlined no-box alert for enemy spell and ability starts using SimpleLog’s bundled GDI renderer. |
-| Actor names | Resolves the actor from current Ashita entity memory and retries briefly if a just-spawned entity has not populated yet. |
-| Configuration menu | Repairs unbalanced ImGui stack calls and uses the current child-window signature to prevent menu crashes. |
+| TChat compatibility | Removes the experimental GDI renderer so changing the TChat window state does not trigger SimpleLog-owned Direct3D drawing. |
+| Mob casting alerts | Temporarily disabled in this stability release while a non-interfering implementation is developed. |
+| Configuration menu | Retains the ImGui stack and child-window stability corrections. |
 | Combat and message log | Keeps the repaired packet parsing, existing log suppression, and message formatting intact. |
 | Unknown entities | Uses a safe monster fallback while an entity is still loading, rather than silently filtering the message. |
 | Truncated packets | Fails closed instead of attempting to read outside packet data. |

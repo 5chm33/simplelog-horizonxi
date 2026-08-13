@@ -89,13 +89,6 @@ packethandlers.HandleIncoming0x28 = function(e)
         return
     end
 
-    -- Parse the alert independently before the legacy log parser rewrites the
-    -- packet.  This keeps the display accurate even when the legacy actor
-    -- lookup is not yet populated for a just-spawned entity.
-    if gCastAlert then
-        gCastAlert.observe_action_packet(e.data)
-    end
-
     local act = gActionHandlers.StringToAct(e.data, e.size)
     if not act then
         return

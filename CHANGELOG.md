@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.3-hxi.6 — TChat-Safe Stability Rollback
+
+This corrective release removes the experimental direct GDI cast renderer because it could clear TChat content when the chat window was maximized or minimized.
+
+| Component | Change |
+|---|---|
+| TChat safety | Detaches the experimental GDI renderer from SimpleLog’s load, packet, frame, and unload callbacks. SimpleLog no longer creates or renders its own Direct3D sprite resources. |
+| Combat log | Retains the repaired current-client packet parser and normal SimpleLog log behavior. |
+| Configuration menu | Retains the configuration-window stack and child-window stability corrections. |
+| Enemy cast overlay | Deliberately disabled in this stable release while a TChat-safe implementation is researched; this avoids corrupting or clearing the chat window. |
+
 ## v1.1.3-hxi.5 — Load-Safe GDI Renderer
 
 This corrective update fixes the startup crash introduced by v1.1.3-hxi.4.

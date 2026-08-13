@@ -21,8 +21,8 @@
 
 addon.name      = 'simplelog';
 addon.author    = 'Byrth, Spiken, Bee, Artoo; HorizonXI compatibility update by Schmeee';
-addon.version   = '1.1.3-hxi.5';
-addon.desc      = 'Combat log parser with HorizonXI ToAU compatibility and styled enemy cast alerts';
+addon.version   = '1.1.3-hxi.6';
+addon.desc      = 'Combat log parser with HorizonXI ToAU compatibility';
 addon.link      = 'https://github.com/Spike2D/SimpleLog';
 
 require('common');
@@ -42,7 +42,6 @@ gCommandHandlers	= require('lib\\commandhandlers');
 gTextHandlers		= require('lib\\texthandlers');
 gPacketHandlers		= require('lib\\packethandlers');
 gActionHandlers		= require('lib\\actionhandlers');
-gCastAlert			= require('lib\\castalert');
 gConfig				= require('lib\\ui');
 
 gProfileSettings	= nil;
@@ -52,7 +51,6 @@ gProfileColor		= nil;
 
 ashita.events.register('load', 'load_cb', function ()
 	gStatus.Init();
-	gCastAlert.initialize();
 end);
 
 ashita.events.register('text_in', 'text_in_cb', function (e)
@@ -73,11 +71,6 @@ end);
 
 ashita.events.register('d3d_present', 'd3d_present_callback1', function ()
 	gConfig.render_config(gConfig.state.toggle_menu)
-	gCastAlert.tick()
-
 	gConfig.toggle_menu(0)
 end);
 
-ashita.events.register('unload', 'unload_cb', function ()
-	gCastAlert.destroy()
-end);
