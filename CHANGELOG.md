@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.3-hxi.5 — Load-Safe GDI Renderer
+
+This corrective update fixes the startup crash introduced by v1.1.3-hxi.4.
+
+| Component | Change |
+|---|---|
+| Startup safety | Stops the bundled GDI font loader from calling `debug.getinfo` after legacy SimpleLog code reuses the global name `debug` as a boolean setting. |
+| GDI path resolution | Uses the stable Ashita `addon.path` to resolve the bundled `gdifonts` files and native renderer DLL. |
+| Alert behavior | Retains the styled cast alert, actor-name retry, repaired packet parser, and configuration-menu stability fixes from v1.1.3-hxi.4. |
+
 ## v1.1.3-hxi.4 — Styled Cast Alert and Menu Stability
 
 This corrective update replaces the experimental plain white fallback from v1.1.3-hxi.3 with a styled SimpleLog alert and repairs the configuration window’s ImGui stack handling.

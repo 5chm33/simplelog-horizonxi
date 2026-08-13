@@ -4,9 +4,9 @@ SimpleLog is an **Ashita v4 combat and message log parser**. It replaces selecte
 
 > **Platform:** Ashita v4 / HorizonXI. SimpleLog is an addon: load it with `/addon load simplelog`.
 
-## Compatibility Update — v1.1.3-hxi.4
+## Compatibility Update — v1.1.3-hxi.5
 
-This release keeps the repaired incoming `0x28` action-packet parser and replaces the experimental plain-text alert with SimpleLog’s bundled styled GDI renderer. The actor and spell are read from a separate current-client action parser, so the alert no longer exposes an incorrect `{Unknown:<id>}` placeholder while an entity is loading.
+This release fixes the prior startup crash and keeps the repaired incoming `0x28` action-packet parser plus SimpleLog’s bundled styled GDI renderer. The actor and spell are read from a separate current-client action parser, so the alert no longer exposes an incorrect `{Unknown:<id>}` placeholder while an entity is loading.
 
 | Area | Compatibility change |
 |---|---|

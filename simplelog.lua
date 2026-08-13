@@ -21,7 +21,7 @@
 
 addon.name      = 'simplelog';
 addon.author    = 'Byrth, Spiken, Bee, Artoo; HorizonXI compatibility update by Schmeee';
-addon.version   = '1.1.3-hxi.4';
+addon.version   = '1.1.3-hxi.5';
 addon.desc      = 'Combat log parser with HorizonXI ToAU compatibility and styled enemy cast alerts';
 addon.link      = 'https://github.com/Spike2D/SimpleLog';
 

@@ -9,8 +9,16 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ]]--
 
+-- SimpleLog's legacy constants intentionally use the global name `debug` as a
+-- boolean toggle.  Do not call the debug-library introspection helper here:
+-- on current Ashita that name is therefore a boolean by the time this library
+-- is required.  The addon path
+-- is stable and gives us the GDI library directory directly.
 local function GetLibPath()
-    return debug.getinfo(2, "S").source:sub(2);
+    if addon and addon.path then
+        return addon.path .. 'gdifonts\\include.lua'
+    end
+    error('SimpleLog GDI font library could not resolve its addon path.')
 end
 
 local libPath    = GetLibPath();
