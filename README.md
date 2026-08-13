@@ -4,14 +4,16 @@ SimpleLog is an **Ashita v4 combat and message log parser**. It replaces selecte
 
 > **Platform:** Ashita v4 / HorizonXI. SimpleLog is an addon: load it with `/addon load simplelog`.
 
-## Compatibility Update — v1.1.3-hxi.3
+## Compatibility Update — v1.1.3-hxi.4
 
-This release repairs the incoming `0x28` action-packet parser for the current Ashita/HorizonXI packet layout and restores the visual enemy-cast alert through a direct Ashita font overlay. The alert is rendered by SimpleLog itself, so it no longer relies on the native client display behavior that changed after the HorizonXI update.
+This release keeps the repaired incoming `0x28` action-packet parser and replaces the experimental plain-text alert with SimpleLog’s bundled styled GDI renderer. The actor and spell are read from a separate current-client action parser, so the alert no longer exposes an incorrect `{Unknown:<id>}` placeholder while an entity is loading.
 
 | Area | Compatibility change |
 |---|---|
-| Mob casting alerts | Renders a direct, no-box center-screen alert for enemy spell and ability starts; it no longer depends on the changed native client overlay path. |
-| Combat and message log | Rebuilds action packets only after safe parsing, keeping SimpleLog’s existing log suppression and formatting behavior intact. |
+| Mob casting alerts | Renders a centered blue-gradient, outlined no-box alert for enemy spell and ability starts using SimpleLog’s bundled GDI renderer. |
+| Actor names | Resolves the actor from current Ashita entity memory and retries briefly if a just-spawned entity has not populated yet. |
+| Configuration menu | Repairs unbalanced ImGui stack calls and uses the current child-window signature to prevent menu crashes. |
+| Combat and message log | Keeps the repaired packet parsing, existing log suppression, and message formatting intact. |
 | Unknown entities | Uses a safe monster fallback while an entity is still loading, rather than silently filtering the message. |
 | Truncated packets | Fails closed instead of attempting to read outside packet data. |
 

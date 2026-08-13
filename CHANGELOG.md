@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.3-hxi.4 — Styled Cast Alert and Menu Stability
+
+This corrective update replaces the experimental plain white fallback from v1.1.3-hxi.3 with a styled SimpleLog alert and repairs the configuration window’s ImGui stack handling.
+
+| Component | Change |
+|---|---|
+| Alert style | Uses the bundled GDI renderer: centered alignment, blue gradient, dark outline, bold text, and no background box. |
+| Actor resolution | Parses the untouched action packet with the current Ashita bitreader and resolves names through entity memory; briefly retries for loading entities instead of showing `{Unknown:<id>}`. |
+| Action resolution | Reads the action-start command argument directly, avoiding the legacy parser’s unreliable per-target value. |
+| Configuration menu | Removes unbalanced text-wrap/tree stack operations, balances window styling on collapsed frames, and uses the current `BeginChild` signature. |
+
 ## v1.1.3-hxi.3 — Direct Enemy Cast Overlay
 
 This corrective update stops relying on the native HorizonXI cast display entirely. SimpleLog now draws its own **no-box center-screen alert** with Ashita’s fonts API when an enemy begins a spell or ability.

@@ -54,25 +54,6 @@ actionhandlers.parse_action_packet = function(act)
 
     -- Constructing table from act to work with, gathering info
 	act.actor = gActionHandlers.ActorParse(act.actor_id)
-    local alert_actor_name = (act.actor and act.actor.name) or 'Unknown'
-
-    -- Trigger the visual alert directly from the raw action-start fields before
-    -- any SimpleLog formatter or filter can alter the action record.
-    if gCastAlert and act.actor and act.actor.type == 'mob' and (act.category == 7 or act.category == 8 or act.category == 10) then
-        local alert_action_id = nil
-        if act.category == 7 or act.category == 8 then
-            local first_target = act.targets and act.targets[1]
-            local first_action = first_target and first_target.actions and first_target.actions[1]
-            alert_action_id = first_action and first_action.param
-        else
-            alert_action_id = act.param
-        end
-        if alert_action_id and alert_action_id > 0 then
-            local language_index = (gProfileSettings and gProfileSettings.lang and gProfileSettings.lang.object) or 2
-            gCastAlert.show_action(alert_actor_name, act.category, alert_action_id, language_index)
-        end
-    end
-
     act.action = gActionHandlers.SpellParse(act)
     act.actor.name = act.actor and act.actor.name and string.gsub(act.actor.name,'[- ]', {['-'] = string.char(0x81,0x7C), [' '] = string.char(0x81,0x3F)}) --fix for ffxi chat splits on trusts with - and spaces
     targets_condensed = false
